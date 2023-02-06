@@ -73,7 +73,7 @@ jobs:
           brew install gradle
           brew install android-sdk
           brew install android-platform-tools
-          brew install --cask intel-haxm
+      # brew install --cask intel-haxm
       - run: |
           export PATH=$JAVA_HOME/bin:$PATH
           echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
