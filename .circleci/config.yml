@@ -43,7 +43,7 @@ jobs:
   #         mkdir -p ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
   #         cp -R $BUILT_APP ios/build/HelloWorld/Build/Products/Debug-iphonesimulator
   #     - run:
-  
+
   #         name: Run E2E Tests - iOS
   #         command: npm run e2e-test:ios -- Sanity &> test-execution-console-ios.log
   #         no_output_timeout: 30m
@@ -61,7 +61,7 @@ jobs:
   #         destination: test-results-ios
   android:
     macos:  # indicate that we are using the macOS executor
-      xcode: 11.7.0
+      xcode: 14.2
     environment:
       JAVA_HOME: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
       ANDROID_SDK_ROOT: /usr/local/Caskroom/android-sdk/4333796
