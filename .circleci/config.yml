@@ -62,9 +62,9 @@ jobs:
   android:
     macos:  # indicate that we are using the macOS executor
       xcode: 14.2
-    environment:
-      JAVA_HOME: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-      ANDROID_SDK_ROOT: /usr/local/Caskroom/android-sdk/4333796
+    # environment:
+      # JAVA_HOME: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+      # ANDROID_SDK_ROOT: /usr/local/Caskroom/android-sdk/4333796
     steps:
       - checkout
       # - run: npm install -g react-native-cli
@@ -77,21 +77,60 @@ jobs:
         # brew install intel-haxm
 
           
-      - run: |
-          export PATH=$JAVA_HOME/bin:$PATH
-          echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
-          echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
-          emulator -list-avds
-          ls -la /Users/$USER/.android/avd
-          sdkmanager "platform-tools" "platforms;android-28"
+      # - run: |
+      #     export PATH=$JAVA_HOME/bin:$PATH
+      #     echo "y" | sdkmanager --install 'system-images;android-28;google_apis;x86_64'
+      #     echo "no" | avdmanager create avd -n test_device -k 'system-images;android-28;google_apis;x86_64' --force
+      #     emulator -list-avds
+      #     ls -la /Users/$USER/.android/avd
+      #     sdkmanager "platform-tools" "platforms;android-28"
+    # android-sdk-dependencies:
+    # description: "Install and set android SDK"
+    # steps:
       - run:
-          name: Starting emulator in background
-          command: export ANDROID_AVD_HOME=/Users/$USER/.android/avd && export ANDROID_HOME=$ANDROID_SDK_ROOT && $ANDROID_HOME/emulator/emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on
+          name: set ANDROID_SDK_ROOT
+          command: |
+            echo 'export ANDROID_SDK_ROOT=$HOME/android-tools'  >> $BASH_ENV
+      - restore_cache:
+          key: android=tools-v1-{{ checksum "scripts/install-android-tools.sh" }}-{{ arch }}
+
+      - run:
+          name: install android tools
+          command: |
+            sh scripts/install-android-tools.sh
+            echo 'export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH'  >> $BASH_ENV
+            echo 'export PATH=$ANDROID_SDK_ROOT/tools:$PATH'  >> $BASH_ENV
+            echo 'export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH'  >> $BASH_ENV
+            echo 'export PATH=$ANDROID_SDK_ROOT/emulator:$PATH'  >> $BASH_ENV
+            source $BASH_ENV
+            sdkmanager --list
+      - save_cache:
+          key: android=tools-v1-{{ checksum "scripts/install-android-tools.sh" }}-{{ arch }}
+          paths:
+            - /Users/distiller/android-tools
+      # - run:
+      #     name: Starting emulator in background
+      #     command: export ANDROID_AVD_HOME=/Users/$USER/.android/avd && export ANDROID_HOME=$ANDROID_SDK_ROOT && $ANDROID_HOME/emulator/emulator -avd test_device -skin 1080x1920 -memory 1024 -engine qemu2 -netfast -no-audio -no-snapshot -accel on
+      #     background: true
+      # - run: |
+      #     adb wait-for-device
+      #     adb devices
+      #     echo "Emulator started"
+    #   create-launch-android-emulator:
+    # description: "create and launch android emulators"
+    # steps:
+      - run:
+          name: create AVD
+          command: echo "no" | avdmanager --verbose create avd --force --name "Pixel_3a_API_29" --package "system-images;android-29;google_apis;x86_64"
+
+      - run:
+          name: start AVD
+          command: emulator @Pixel_3a_API_29 -no-window -no-audio
           background: true
-      - run: |
-          adb wait-for-device
-          adb devices
-          echo "Emulator started"
+
+      - run:
+          name: wait for emulator
+          command: adb wait-for
       - run: |
           rm -rf node_modules
           npm cache clean --force
