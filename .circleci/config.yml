@@ -61,7 +61,7 @@ jobs:
   #         destination: test-results-ios
   android:
     macos:  # indicate that we are using the macOS executor
-      xcode: 11.7.0
+      xcode: 14.2
     environment:
       JAVA_HOME: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
       ANDROID_SDK_ROOT: /usr/local/Caskroom/android-sdk/4333796
@@ -69,11 +69,12 @@ jobs:
       - checkout
       # - run: npm install -g react-native-cli
       - run: |
-          brew install --cask adoptopenjdk14
+          brew update
+          brew install adoptopenjdk
           brew install gradle
           brew install android-sdk
           brew install android-platform-tools
-    # brew install intel-haxm
+        # brew install intel-haxm
 
           
       - run: |
