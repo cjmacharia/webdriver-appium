@@ -63,14 +63,14 @@ jobs:
     macos:  # indicate that we are using the macOS executor
       xcode: 14.2
     environment:
-      JAVA_HOME: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-      ANDROID_SDK_ROOT: /usr/local/Caskroom/android-sdk/4333796
+      JAVA_HOME: /Library/Java/Home
+      # ANDROID_SDK_ROOT: /usr/local/Caskroom/android-sdk/4333796
     steps:
       - checkout
       # - run: npm install -g react-native-cli
       - run: |
           brew update
-          brew install adoptopenjdk
+          brew install adoptopenjdk8
           brew install gradle
           brew install android-sdk
           brew install android-platform-tools
