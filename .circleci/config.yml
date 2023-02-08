@@ -166,11 +166,11 @@ jobs:
       # - node-version
       - bundle-dependencies
       # - npm-dependencies
-      - react-native-dependencies
+      # - react-native-dependencies
       - gradle-dependencies
       - android-sdk-dependencies
       - create-launch-android-emulator
-      - clear-detox-cache
+      # - clear-detox-cache
 
       - run:
           working_directory: .
@@ -202,7 +202,7 @@ jobs:
       - bundle-dependencies
       # - npm-dependencies
       - pods-dependencies
-      - react-native-dependencies
+      # - react-native-dependencies
       - simulator-dependencies
       - clear-detox-cache
 
