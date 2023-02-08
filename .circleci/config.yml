@@ -108,7 +108,9 @@ commands:
             echo 'export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH'  >> $BASH_ENV
             echo 'export PATH=$ANDROID_SDK_ROOT/emulator:$PATH'  >> $BASH_ENV
             source $BASH_ENV
+            echo "we are back popopo"
             sdkmanager --list
+            echo "we are back kikiki"
       - save_cache:
           key: android=tools-v1-{{ checksum "scripts/install-android-tools.sh" }}-{{ arch }}
           paths:
