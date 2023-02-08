@@ -9,6 +9,7 @@ cd $ANDROID_SDK_ROOT
 curl https://dl.google.com/android/repository/tools_r25.2.3-macosx.zip -o sdk-tools.zip
 echo "We got >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 unzip sdk-tools.zip
+echo "We got >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 
 mkdir -p "$ANDROID_SDK_ROOT/licenses"
 
@@ -24,5 +25,6 @@ $SDKMANAGER "build-tools;29.0.2"
 $SDKMANAGER "ndk-bundle"
 $SDKMANAGER "system-images;android-29;google_apis;x86_64"
 $SDKMANAGER "emulator"
+echo "We got finally >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 
 # echo "y" | sudo $SDKMANAGER --install "ndk;20.0.5594570" --sdk_root=${ANDROID_SDK_ROOT}
