@@ -38,9 +38,9 @@ commands:
   bundle-dependencies:
     description: "Get bundle dependencies"
     steps:
-      # - restore_cache:
-      #     name: Restore Fastlane cache
-      #     key: v1-gems-{{ checksum "Gemfile.lock" }}-{{ arch }}
+      - restore_cache:
+          name: Restore Fastlane cache
+          key: v1-gems-{{ checksum "Gemfile.lock" }}-{{ arch }}
       - run:
           working_directory: .
           name: Download Fastlane dependencies
