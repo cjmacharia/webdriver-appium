@@ -7,7 +7,7 @@ fi
 mkdir -p $ANDROID_SDK_ROOT
 cd $ANDROID_SDK_ROOT
 curl https://dl.google.com/android/repository/tools_r25.2.3-macosx.zip -o sdk-tools.zip
-
+echo "We got >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 unzip sdk-tools.zip
 
 mkdir -p "$ANDROID_SDK_ROOT/licenses"
