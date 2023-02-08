@@ -102,7 +102,7 @@ commands:
           name: install android tools
           command: |
             brew tap homebrew/cask
-            brew install adoptopenjdk8
+            brew install adoptopenjdk
             brew install gradle
             brew install android-sdk
             brew install android-platform-tools
