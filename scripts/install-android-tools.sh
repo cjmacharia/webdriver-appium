@@ -6,7 +6,7 @@ fi
 
 mkdir -p $ANDROID_SDK_ROOT
 cd $ANDROID_SDK_ROOT
-curl https://dl.google.com/android/repository/sdk-tools-darwin-4333796.zip -o sdk-tools.zip
+curl https://dl.google.com/android/repository/tools_r25.2.3-macosx.zip -o sdk-tools.zip
 
 unzip sdk-tools.zip
 
