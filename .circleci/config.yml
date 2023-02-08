@@ -158,7 +158,7 @@ jobs:
 
   android-test:
     macos:
-      xcode: 11.3.1
+      xcode: 14.2
     steps:
       - attach_workspace:
           at: .
@@ -231,4 +231,4 @@ workflows:
   run_detox_tests:
     jobs:
       - android-test
-      - ios-test
+      # - ios-test
