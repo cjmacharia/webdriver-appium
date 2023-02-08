@@ -102,6 +102,7 @@ commands:
           name: install android tools
           command: |
             sh scripts/install-android-tools.sh
+            echo "we are back"
             echo 'export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH'  >> $BASH_ENV
             echo 'export PATH=$ANDROID_SDK_ROOT/tools:$PATH'  >> $BASH_ENV
             echo 'export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH'  >> $BASH_ENV
