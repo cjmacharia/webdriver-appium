@@ -165,7 +165,7 @@ jobs:
       - checkout
       # - node-version
       - bundle-dependencies
-      - npm-dependencies
+      # - npm-dependencies
       - react-native-dependencies
       - gradle-dependencies
       - android-sdk-dependencies
